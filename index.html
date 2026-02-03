@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Harry Potter and the Philosopher's Stone</title>
+  <style>
+    body {
+      font-family: Georgia, serif;
+      background: #fdf6f0;
+      color: #3a2c2c;
+      max-width: 700px;
+      margin: 80px auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.2em;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 15px;
+      width: 60%;
+      max-width: 300px;
+      font-family: Georgia, serif;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      font-family: Georgia, serif;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    audio {
+      margin-top: 25px;
+      width: 100%;
+    }
+
+    .error {
+      color: #b14a4a;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <h1>Harry Potter and the Philosopher's Stone</h1>
+
+    <p>
+      This is just for you.<br>
+      Enter the password to come in.
+    </p>
+
+    <input
+      type="password"
+      id="password"
+      placeholder="our little secret"
+      onkeydown="if(event.key === 'Enter') checkPassword()"
+    >
+    <br>
+
+    <button onclick="checkPassword()">Enter</button>
+
+    <div id="error" class="error"></div>
+  </div>
+
+  <!-- CONTENT -->
+  <div id="content" class="hidden">
+    <h1>Welcome ✨</h1>
+
+    <p>
+      I know you’ve never read <em>Harry Potter and the Philosopher’s Stone</em>,
+      so I wanted to read it to you instead.
+      <br><br>
+      Wherever you are, I hope this feels like I’m there too.
+    </p>
+
+    <p><em>(Headphones recommended)</em></p>
+
+    <h2>Chapter 1 - The Boy Who Lived</h2>
+    <audio controls>
+      <source src="chapter1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <script>
+    const correctPassword = "lumos";
+
+    function checkPassword() {
+      const input = document.getElementById("password").value.toLowerCase();
+      const error = document.getElementById("error");
+
+      if (input === correctPassword) {
+        document.getElementById("gate").classList.add("hidden");
+        document.getElementById("content").classList.remove("hidden");
+      } else {
+        error.textContent = "Not quite… try again ✨";
+      }
+    }
+  </script>
+
+</body>
+</html>
